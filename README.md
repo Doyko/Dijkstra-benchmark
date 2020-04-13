@@ -2,7 +2,7 @@
 
 This project aims at benchmarking four programing languages, Python, Java, C++ and Rust using the Dijkstra algorithm.
 
-The program will generate a graph and execute the Dijkstra algorithm with every language on it. The algorithm will be executed many times and the mean time will be recorded. And then that program will reiterate the operation with a bigger graph. Every execution time will be saved in a .csv file.
+The program will generate a graph and execute the Dijkstra algorithm with every language on it. The algorithm will be executed many times and the mean time will be recorded. Then this program will reiterate the operation with a bigger graph. Every execution time will be saved in a .csv file.
 
 # Folders
 
