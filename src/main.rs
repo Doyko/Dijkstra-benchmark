@@ -1,5 +1,6 @@
 use rand::Rng;
 use std::process::Command;
+use std::fs;
 use std::fs::File;
 use std::io::prelude::*;
 
@@ -79,6 +80,7 @@ fn main() -> std::io::Result<()> {
     // graph
     let mut graph: Vec<Vec<u32>> = Vec::new();
 
+    fs::create_dir_all("output")?;
     let mut file = File::create("output/output.csv")?;
 
     file.write(b"size;Python;Java;C++;Rust\n")?;
