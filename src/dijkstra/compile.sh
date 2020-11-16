@@ -1,3 +1,4 @@
+#!/bin/bash
 scr_path=`dirname $0`
 
 # cpp

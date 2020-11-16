@@ -69,8 +69,8 @@ fn exec(program: &str, args: &[&str]) -> u64 {
 }
 
 const STEP: usize = 5;
-const MAX: usize = 201;
-const ITER: u32 = 5000;
+const MAX: usize = 501;
+const ITER: u32 = 2500;
 
 fn main() -> std::io::Result<()> {
     // compile
@@ -89,12 +89,21 @@ fn main() -> std::io::Result<()> {
         println!("{}", i);
         add_nodes(&mut graph, STEP as u32);
         create_topology(&graph)?;
-        file.write(format!("{};{};{};{};{}\n",
+        if i > 151 {
+            file.write(format!("{};NaN;{};{};{}\n",
+            i,
+            exec("java", &["-cp", "src/dijkstra/", "dijkstra", "src/dijkstra/topology.txt", &ITER.to_string()]),
+            exec("src/dijkstra/dijkstra_cpp", &["src/dijkstra/topology.txt", &ITER.to_string()]),
+            dijkstra("src/dijkstra/topology.txt", ITER)).as_bytes())?;
+        }
+        else {
+            file.write(format!("{};{};{};{};{}\n",
             i,
             exec("src/dijkstra/dijkstra.py", &["src/dijkstra/topology.txt", &ITER.to_string()]),
             exec("java", &["-cp", "src/dijkstra/", "dijkstra", "src/dijkstra/topology.txt", &ITER.to_string()]),
             exec("src/dijkstra/dijkstra_cpp", &["src/dijkstra/topology.txt", &ITER.to_string()]),
             dijkstra("src/dijkstra/topology.txt", ITER)).as_bytes())?;
+        }
     }
     file.flush()?;
 
